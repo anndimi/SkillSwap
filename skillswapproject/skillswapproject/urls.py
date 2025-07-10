@@ -16,9 +16,11 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from skillswapapp import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('skillswapapp.urls')), # Include App URLs
-    path('', include()),
+    path("skillswapapp/", include('skillswapapp.urls')), # Include App URLs
+    path("", views.index, name="index"),
+    # path("logout/", views.user_logout, name="logout"),
 ]

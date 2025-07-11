@@ -4,8 +4,9 @@ from django.contrib.auth.models import User
 from .models import Skill
 from .forms import SkillForm
 from django.contrib import messages
-from django.contrib.auth.decorators import login_required  # for login session
-
+from django.contrib.auth.decorators import login_required
+from skillswapapp import models  # for login session
+from django.db.models import Q
 
 def index(request):
     return render(request, "skillswapapp/index.html")
@@ -77,7 +78,18 @@ def register(request):
 
 @login_required(login_url="skillswapapp:login")
 def skills(request):
-    return render(request, "skillswapapp/skills.html")
+    query = request.GET.get("q", "")
+    current_username = request.session.get("username")
+
+    skills = Skill.objects.exclude(user__username=current_username)
+
+    if query:
+        skills = skills.filter(
+            Q(title__icontains=query) |
+            Q(category__icontains=query)
+        )
+
+    return render(request, "skillswapapp/skills.html", {"skills": skills})
 
 
 @login_required(login_url="skillswapapp:login")
@@ -86,8 +98,9 @@ def addskills(request):
 
 
 @login_required(login_url="skillswapapp:login")
-def skilldetails(request):
-    return render(request, "skillswapapp/skilldetails.html")
+def skilldetails(request, skill_id):
+    skill = get_object_or_404(Skill, id=skill_id)
+    return render(request, "skillswapapp/skilldetails.html", {"skill": skill})
 
 
 @login_required(login_url="skillswapapp:login")

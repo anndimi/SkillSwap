@@ -1,6 +1,7 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
+from .models import Skill
 from .forms import SkillForm
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required  # for login session
@@ -93,6 +94,13 @@ def skilldetails(request):
 def profile(request):
     user_skills = request.user.skills.all()
     return render(request, "skillswapapp/profile.html", {"user_skills": user_skills})
+
+
+@login_required(login_url="skillswapapp:login")
+def deleteskill(request, skill_id):
+    skill = get_object_or_404(Skill, id=skill_id, user=request.user)
+    skill.delete()
+    return redirect("skillswapapp:profile")
 
 
 @login_required(login_url="skillswapapp:login")

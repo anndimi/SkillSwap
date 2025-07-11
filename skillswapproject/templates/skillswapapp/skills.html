@@ -44,7 +44,62 @@
 
   .content {
     padding: 40px;
+  }
+
+  .search-form {
+    margin-bottom: 30px;
     text-align: center;
+  }
+
+  .search-form input {
+    padding: 12px;
+    width: 300px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+  }
+
+  .search-form button {
+    padding: 12px 40px;
+    background-color: #2980b9;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    font-weight: bold;
+    margin-left: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+
+  .search-form button:hover {
+    background-color: #2471a3;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+
+  th, td {
+    padding: 12px;
+    border: 1px solid #ddd;
+    text-align: left;
+  }
+
+  th {
+    background-color: #f2f2f2;
+  }
+
+  .view-link {
+    color: #2980b9;
+    text-decoration: none;
+    font-weight: bold;
+  }
+
+  .view-link:hover {
+    text-decoration: underline;
   }
 </style>
 
@@ -58,6 +113,40 @@
 
 <div class="content">
   <h1>Skills</h1>
+
+  <form method="get" class="search-form">
+    <input type="text" name="q" placeholder="Filter by title or category" value="{{ request.GET.q }}">
+    <button type="submit">Search</button>
+  </form>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Category</th>
+        <th>Description</th>
+        <th>Availability</th>
+        <th>Location</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for skill in skills %}
+        <tr>
+          <td>{{ skill.title }}</td>
+          <td>{{ skill.get_category_display }}</td>
+          <td>{{ skill.description }}</td>
+          <td>{{ skill.availability }}</td>
+          <td>{{ skill.location }}</td>
+          <td><a href="{% url 'skillswapapp:skilldetails' skill.id %}" class="view-link">View Details</a></td>
+        </tr>
+      {% empty %}
+        <tr>
+          <td colspan="6">No skills found.</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
 </div>
 
 {% endblock %}

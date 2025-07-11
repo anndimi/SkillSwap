@@ -64,6 +64,20 @@
     <h1>{{ request.user.first_name }}'s profile</h1>
     <p>{{ request.user.email }}</p>
     <p>Here you can manage your skills, view your profile, and more.</p>
+    <h2>Your Skills</h2>
+    <ul>
+        {% for skill in user_skills %}
+            <li>
+                <strong>Skill: {{ skill.title }}</strong><br>
+                 Category: {{ skill.category }}<br>
+                <em>Description: {{ skill.description }}</em><br>
+                Availability: {{ skill.availability }}<br>
+                Location: {{ skill.location }}<br><br>
+            </li>
+        {% empty %}
+            <li>You haven't added any skills yet.</li>
+        {% endfor %}
+    </ul>
 </div>
 
 {% endblock %}

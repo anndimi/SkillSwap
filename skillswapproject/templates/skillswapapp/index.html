@@ -1,8 +1,72 @@
 {% extends 'skillswapapp/base.html' %}
+{% load static %}
 {% block body_block %}
- 
-<div class="jumbotron">
-  <h1>INDEX</h1>
+
+<style>
+  html, body {
+    margin: 0;
+    padding: 0;
+  }
+
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #f4f4f4;
+  }
+
+  .navbar {
+    background-color: #2c3e50;
+    padding: 1rem;
+    color: white;
+    text-align: center;
+    font-size: 2rem;
+    font-weight: bold;
+    letter-spacing: 1px;
+    margin: 0; /* Ensure no extra space */
+  }
+
+  .container {
+    text-align: center;
+    margin-top: 100px;
+  }
+
+  .btn {
+    display: inline-block;
+    margin: 10px;
+    padding: 12px 24px;
+    font-size: 16px;
+    font-weight: bold;
+    color: white;
+    background-color: #3498db;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+  }
+
+  .btn:hover {
+    background-color: #2980b9;
+  }
+
+  .description {
+    font-size: 18px;
+    color: #333;
+    margin-top: 20px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+</style>
+
+<div class="navbar">
+  SkillSwap
 </div>
- 
+
+<div class="container">
+  <h1>Welcome to SkillSwap</h1>
+  <p class="description">
+    A platform where you can offer your skills or request to learn something new.
+  </p>
+  <a href="{% url 'skillswapapp:login' %}" class="btn">Login</a>
+  <a href="{% url 'skillswapapp:register' %}" class="btn">Register</a>
+</div>
+
 {% endblock %}

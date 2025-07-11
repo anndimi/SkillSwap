@@ -1,8 +1,12 @@
 {% extends 'skillswapapp/base.html' %}
 {% block body_block %}
- 
-<div class="jumbotron">
-  <h1>Add Skills</h1>
-</div>
- 
+
+<h2>Add a New Skill</h2>
+<form method="post">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button type="submit">Add Skill</button>
+</form>
+
+
 {% endblock %}

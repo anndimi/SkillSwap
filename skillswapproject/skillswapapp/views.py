@@ -79,15 +79,17 @@ def register(request):
 def skills(request):
     return render(request, 'skillswapapp/skills.html')
 
-
 @login_required(login_url='skillswapapp:login')
 def addskills(request):
     return render(request, 'skillswapapp/addskills.html')
 
-
 @login_required(login_url='skillswapapp:login')
 def skilldetails(request):
     return render(request, 'skillswapapp/skilldetails.html')
+
+@login_required(login_url='skillswapapp:login')
+def profile(request):
+    return render(request, 'skillswapapp/profile.html')
 
 # def review(request): # optional
 #     return render(request, 'skillswapapp/review.html')

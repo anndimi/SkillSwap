@@ -15,6 +15,7 @@ urlpatterns = [
     path("skills/", views.skills, name="skills"),
     path("addskills/", views.addskills, name="addskills"),
     path("skilldetails/", views.skilldetails, name="skilldetails"),
+    path("profile/", views.profile, name="profile"),
     # path("review/", views.review, name="review"), #optional
     # path("contact/", views.contact, name="contact"),  #optional
 ]

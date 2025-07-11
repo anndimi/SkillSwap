@@ -4,7 +4,7 @@ from django.urls import path
 from . import views
 from django.views.generic.base import RedirectView
 
-app_name = 'skillswapapp'
+app_name = "skillswapapp"
 
 urlpatterns = [
     path("", RedirectView.as_view(pattern_name="skillswapapp:index", permanent=False)),
@@ -16,6 +16,7 @@ urlpatterns = [
     path("addskills/", views.addskills, name="addskills"),
     path("skilldetails/", views.skilldetails, name="skilldetails"),
     path("profile/", views.profile, name="profile"),
+    path("profile/delete/<int:skill_id>/", views.deleteskill, name="deleteskill"),
     # path("review/", views.review, name="review"), #optional
     # path("contact/", views.contact, name="contact"),  #optional
 ]

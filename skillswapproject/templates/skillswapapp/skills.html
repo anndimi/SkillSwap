@@ -2,62 +2,58 @@
 {% load static %}
 {% block body_block %}
 
-<style>
-  .top-bar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #2c3e50;
-    color: white;
-    padding: 10px 20px;
-    font-size: 16px;
-  }
-
-  .btn-container {
-    display: flex;
-    gap: 10px;
-  }
-
-  .profile-btn {
-    background-color: #34632f;
-    color: white;
-    padding: 8px 16px;
-    border: none;
-    border-radius: 4px;
-    text-decoration: none;
-    font-weight: bold;
-  }
-
-  .logout-btn {
-    background-color: #e74c3c;
-    color: white;
-    padding: 8px 16px;
-    border: none;
-    border-radius: 4px;
-    text-decoration: none;
-    font-weight: bold;
-  }
-
-  .logout-btn:hover {
-    background-color: #c0392b;
-  }
-
-  .content {
-    padding: 40px;
-    text-align: center;
-  }
-</style>
-
-<div class="top-bar">
-  <div>Welcome, {{ request.user.first_name }}</div>
-  <div class="btn-container">
-    <a href="{% url 'skillswapapp:profile' %}" class="profile-btn">Profile</a>
-    <a href="{% url 'skillswapapp:logout' %}" class="logout-btn">Logout</a>
-  </div>
-</div>
-
 <div class="content">
   <h1>Skills</h1>
+
+  <form method="get" class="search-form">
+    <input type="text" name="q" placeholder="Search by title" value="{{ request.GET.q }}">
+    
+    <select name="category" style="padding: 12px; font-size: 16px; border-radius: 4px; border: 1px solid #ccc;">
+      <option value="">All Categories</option>
+      <option value="music" {% if request.GET.category == "music" %}selected{% endif %}>Music</option>
+      <option value="language" {% if request.GET.category == "language" %}selected{% endif %}>Language</option>
+      <option value="tech" {% if request.GET.category == "tech" %}selected{% endif %}>Technology</option>
+      <option value="art" {% if request.GET.category == "art" %}selected{% endif %}>Art</option>
+      <option value="sports" {% if request.GET.category == "sports" %}selected{% endif %}>Sports</option>
+    </select>
+    <select name="type" style="padding: 12px; font-size: 16px; border-radius: 4px; border: 1px solid #ccc;">
+      <option value="">All Types</option>
+      <option value="offer" {% if request.GET.type == "offer" %}selected{% endif %}>Offering Skill</option>
+      <option value="seek" {% if request.GET.type == "seek" %}selected{% endif %}>Seeking Skill</option>
+    </select>
+
+    <button type="submit">Filter</button>
+  </form>
+
+
+  <table>
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Category</th>
+        <th>Description</th>
+        <th>Availability</th>
+        <th>Location</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for skill in skills %}
+        <tr>
+          <td>{{ skill.title }}</td>
+          <td>{{ skill.get_category_display }}</td>
+          <td>{{ skill.description }}</td>
+          <td>{{ skill.availability }}</td>
+          <td>{{ skill.location }}</td>
+          <td><a href="{% url 'skillswapapp:skilldetails' skill.id %}" class="view-link">View Details</a></td>
+        </tr>
+      {% empty %}
+        <tr>
+          <td colspan="6">No skills found.</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
 </div>
 
 {% endblock %}

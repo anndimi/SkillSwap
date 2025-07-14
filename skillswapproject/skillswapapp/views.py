@@ -5,8 +5,7 @@ from .models import Skill
 from .forms import SkillForm
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from skillswapapp import models  # for login session
-from django.db.models import Q
+
 
 def index(request):
     return render(request, "skillswapapp/index.html")
@@ -80,6 +79,7 @@ def register(request):
 def skills(request):
     query = request.GET.get("q", "")
     category = request.GET.get("category", "")
+    type_ = request.GET.get("type", "")
     current_username = request.session.get("username")
 
     skills = Skill.objects.exclude(user__username=current_username)
@@ -89,6 +89,9 @@ def skills(request):
 
     if category:
         skills = skills.filter(category=category)
+
+    if type_:
+        skills = skills.filter(type=type_)
 
     return render(request, "skillswapapp/skills.html", {"skills": skills})
 

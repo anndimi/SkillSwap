@@ -2,9 +2,19 @@
     <head>
         <title>SkillSwap</title>
         {% load static %}
+        <link rel="stylesheet" href="{% static "css/styles.css" %}">
     </head>
     <body>
-
+        {% if user.is_authenticated %}
+        <div class="top-bar">
+          <div>Welcome, {{ request.user.first_name }}</div>
+            <div class="btn-container">
+              <a href="{% url 'skillswapapp:skills' %}" class="profile-btn">Skills</a>
+              <a href="{% url 'skillswapapp:profile' %}" class="profile-btn">Profile</a>
+              <a href="{% url 'skillswapapp:logout' %}" class="logout-btn">Logout</a>
+            </div>
+        </div>
+        {% endif %}
         <!-- <div class="container"> -->
             {% block body_block %}
             <!-- Anything outside this will be inherited -->

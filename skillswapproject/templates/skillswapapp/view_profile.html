@@ -1,0 +1,35 @@
+{% extends 'skillswapapp/base.html' %}
+{% block body_block %}
+
+<div class="profile-container">
+  <h1>{{ viewed_user.first_name }}'s Profile</h1>
+
+  <p><strong>First Name:</strong> {{ viewed_user.first_name }}</p>
+  <p><strong>Email:</strong> {{ viewed_user.email }}</p>
+
+  {% if user_profile.profile_picture %}
+    <div class="profile-picture-preview">
+      <img src="{{ user_profile.profile_picture.url }}" alt="Profile Picture">
+    </div>
+  {% endif %}
+
+  <p><strong>Bio:</strong> {{ user_profile.bio }}</p>
+
+  <hr>
+  <h2>{{ viewed_user.first_name }}'s Skills</h2>
+  <ul>
+    {% for skill in user_skills %}
+      <li>
+        <strong>{{ skill.title }}</strong><br>
+        Category: {{ skill.get_category_display }}<br>
+        Description: {{ skill.description }}<br>
+        Availability: {{ skill.availability }}<br>
+        Location: {{ skill.location }}
+      </li>
+    {% empty %}
+      <li>No skills listed.</li>
+    {% endfor %}
+  </ul>
+</div>
+
+{% endblock %}

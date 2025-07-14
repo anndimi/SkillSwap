@@ -79,15 +79,16 @@ def register(request):
 @login_required(login_url="skillswapapp:login")
 def skills(request):
     query = request.GET.get("q", "")
+    category = request.GET.get("category", "")
     current_username = request.session.get("username")
 
     skills = Skill.objects.exclude(user__username=current_username)
 
     if query:
-        skills = skills.filter(
-            Q(title__icontains=query) |
-            Q(category__icontains=query)
-        )
+        skills = skills.filter(title__icontains=query)
+
+    if category:
+        skills = skills.filter(category=category)
 
     return render(request, "skillswapapp/skills.html", {"skills": skills})
 

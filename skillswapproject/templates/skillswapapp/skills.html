@@ -115,9 +115,20 @@
   <h1>Skills</h1>
 
   <form method="get" class="search-form">
-    <input type="text" name="q" placeholder="Filter by title or category" value="{{ request.GET.q }}">
+    <input type="text" name="q" placeholder="Search by title" value="{{ request.GET.q }}">
+    
+    <select name="category" style="padding: 12px; font-size: 16px; border-radius: 4px; border: 1px solid #ccc;">
+      <option value="">All Categories</option>
+      <option value="music" {% if request.GET.category == "music" %}selected{% endif %}>Music</option>
+      <option value="language" {% if request.GET.category == "language" %}selected{% endif %}>Language</option>
+      <option value="tech" {% if request.GET.category == "tech" %}selected{% endif %}>Technology</option>
+      <option value="art" {% if request.GET.category == "art" %}selected{% endif %}>Art</option>
+      <option value="sports" {% if request.GET.category == "sports" %}selected{% endif %}>Sports</option>
+    </select>
+
     <button type="submit">Search</button>
   </form>
+
 
   <table>
     <thead>

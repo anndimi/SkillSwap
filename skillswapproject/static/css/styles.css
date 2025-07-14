@@ -99,6 +99,138 @@ th {
 }
 /* NAVBAR END */
 
+
+/* ------contact button in skilldetails----- */
+  .contact-button {
+  display: inline-block;
+  background-color: #2980b9; 
+  color: white;
+  padding: 10px 20px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.contact-button:hover {
+  background-color: #2980b9;
+}
+
+
+/* -------Contact Page--------- */
+.contact-page {
+  background-color: #f1f1f1;
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+}
+
+.contact-page .contact-container {
+  max-width: 600px;
+  margin: 40px auto;
+  background: #fff;
+  padding: 20px 30px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.contact-page .contact-container h2 {
+  margin-bottom: 15px;
+  color: #333;
+}
+
+.contact-page .contact-container textarea {
+  width: 100%;
+  height: 120px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  resize: vertical;
+}
+
+.contact-page .contact-container button {
+  margin-top: 15px;
+  padding: 10px 20px;
+  background: #2980b9;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.contact-page .contact-container button:hover {
+  background: #1f6d9c;
+}
+
+.contact-page .success-message {
+  padding: 10px;
+  background: #d4edda;
+  border: 1px solid #c3e6cb;
+  border-radius: 5px;
+  margin-bottom: 20px;
+  color: #155724;
+}
+
+.contact-page .back-link {
+  display: inline-block;
+  margin-top: 20px;
+  text-decoration: none;
+  color: #2980b9;
+}
+
+.contact-page .back-link:hover {
+  text-decoration: underline;
+}
+/* ---------Register form-------- */
+  .register-container {
+    max-width: 500px;
+    margin: 80px auto;
+    padding: 30px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+  }
+
+  .register-container h2 {
+    text-align: center;
+    margin-bottom: 25px;
+    color: #2c3e50;
+  }
+
+  .register-container label {
+    font-weight: bold;
+    display: block;
+    margin-top: 15px;
+  }
+
+  .register-container input[type="text"],
+  .register-container input[type="email"],
+  .register-container input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+
+  .register-container button {
+    width: 100%;
+    padding: 12px;
+    margin-top: 25px;
+    background-color: #2ecc71;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+
+  .register-container button:hover {
+    background-color: #27ae60;
+  }
+/* ----Register form End----- */
 /* PROFILE PAGE STYLES */
 .profile-form {
   display: grid;

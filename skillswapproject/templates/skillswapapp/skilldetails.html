@@ -1,8 +1,49 @@
 {% extends 'skillswapapp/base.html' %}
 {% block body_block %}
- 
-<div class="jumbotron">
-  <h1>Skill Details</h1>
+
+<style>
+  .detail-container {
+    max-width: 700px;
+    margin: 50px auto;
+    padding: 30px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    font-size: 16px;
+  }
+
+  .detail-container h2 {
+    text-align: center;
+    margin-bottom: 25px;
+    color: #2c3e50;
+  }
+
+  .detail-container p {
+    margin: 10px 0;
+  }
+
+  .back-link {
+    display: inline-block;
+    margin-top: 20px;
+    color: #2980b9;
+    text-decoration: none;
+    font-weight: bold;
+  }
+
+  .back-link:hover {
+    text-decoration: underline;
+  }
+</style>
+
+<div class="detail-container">
+  <h2>{{ skill.title }}</h2>
+  <p><strong>Category:</strong> {{ skill.get_category_display }}</p>
+  <p><strong>Description:</strong> {{ skill.description }}</p>
+  <p><strong>Availability:</strong> {{ skill.availability }}</p>
+  <p><strong>Location:</strong> {{ skill.location }}</p>
+  <p><strong>Offered by:</strong> {{ skill.user.first_name }} ({{ skill.user.username }})</p>
+
+  <a href="{% url 'skillswapapp:skills' %}" class="back-link">← Back to Skills</a>
 </div>
- 
+
 {% endblock %}

@@ -13,8 +13,10 @@
     </a>
   </p>
 
-
   <a href="{% url 'skillswapapp:skills' %}" class="detail-back-link">← Back to Skills</a>
+  <a href="{% url 'skillswapapp:contact' skill.id %}" class="contact-button">
+    Contact {{ skill.user.username }}
+  </a>
 </div>
 
 {% endblock %}

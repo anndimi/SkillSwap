@@ -18,5 +18,5 @@ urlpatterns = [
     path("profile/", views.profile, name="profile"),
     path("profile/delete/<int:skill_id>/", views.deleteskill, name="deleteskill"),
     # path("review/", views.review, name="review"), #optional
-    # path("contact/", views.contact, name="contact"),  #optional
+    path("contact/<int:skill_id>/", views.contact_user_view, name="contact"),
 ]

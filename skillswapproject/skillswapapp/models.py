@@ -3,6 +3,10 @@ from django.contrib.auth.models import User
 
 
 class Skill(models.Model):
+    TYPE_CHOICES = [
+        ("offer", "Offering Skill"),
+        ("seek", "Seeking Skill"),
+    ]
     CATEGORY_CHOICES = [
         ("music", "Music"),
         ("language", "Language"),
@@ -13,11 +17,12 @@ class Skill(models.Model):
     ]
 
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="skills")
-    title = models.CharField(max_length=100)
-    category = models.CharField(max_length=20, blank=True, null=True, choices=CATEGORY_CHOICES)
-    description = models.TextField()
-    availability = models.CharField(max_length=100, blank=True, null=True, help_text="E.g. Weekends, Evenings, etc.")
-    location = models.CharField(max_length=100, blank=True, null=True, help_text="Optional if the skill is remote")
+    type = models.CharField(max_length=10, choices=TYPE_CHOICES, default="offer", help_text="*")
+    title = models.CharField(max_length=100, help_text="*")
+    category = models.CharField(max_length=20, choices=CATEGORY_CHOICES, default="other", help_text="*")
+    description = models.TextField(max_length=300, help_text="*")
+    availability = models.CharField(max_length=100, help_text="* E.g. Weekends, Evenings etc.")
+    location = models.CharField(max_length=100, help_text="* E.g. City, Remote etc.")
 
     def __str__(self):
         return f"{self.title} ({self.category}) by {self.user.username}"

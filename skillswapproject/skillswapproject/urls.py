@@ -18,6 +18,8 @@ from django.contrib import admin
 from django.urls import path, include
 from skillswapapp import views
 
+
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path("skillswapapp/", include('skillswapapp.urls')), # Include App URLs

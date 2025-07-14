@@ -5,7 +5,13 @@ from .models import Skill
 from .forms import SkillForm
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+<<<<<<< HEAD
 
+=======
+from skillswapapp import models  # for login session
+from django.db.models import Q
+from .forms import CustomSignupForm
+>>>>>>> skillswap-contact
 
 def index(request):
     return render(request, "skillswapapp/index.html")
@@ -46,33 +52,43 @@ def user_logout(request):
     logout(request)
     return redirect("skillswapapp:login")
 
-
 def register(request):
-    if request.method == "POST":
-        fullname = request.POST["fullname"]
-        username = request.POST["username"]
-        email = request.POST["email"]
-        password = request.POST["password"]
-        confirm_password = request.POST["confirm_password"]
+    if request.method == 'POST':
+        form = CustomSignupForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            login(request, user)  
+            return redirect('skillswapapp:index')  
+    else:
+        form = CustomSignupForm()
+    return render(request, 'skillswapapp/register.html', {'form': form})
 
-        if password != confirm_password:
-            messages.error(request, "Passwords do not match.")
-            return redirect("skillswapapp:register")
+# def register(request):
+#     if request.method == "POST":
+#         fullname = request.POST["fullname"]
+#         username = request.POST["username"]
+#         email = request.POST["email"]
+#         password = request.POST["password"]
+#         confirm_password = request.POST["confirm_password"]
 
-        if User.objects.filter(username=username).exists():
-            messages.error(request, "Username already exists.")
-            return redirect("skillswapapp:register")
+#         if password != confirm_password:
+#             messages.error(request, "Passwords do not match.")
+#             return redirect("skillswapapp:register")
 
-        try:
-            user = User.objects.create_user(username=username, email=email, password=password, first_name=fullname)
-            user.save()
-            messages.success(request, "Registration successful. Please log in.")
-            return redirect("skillswapapp:login")
-        except Exception as e:
-            messages.error(request, f"An error occurred: {str(e)}")
-            return redirect("skillswapapp:register")
+#         if User.objects.filter(username=username).exists():
+#             messages.error(request, "Username already exists.")
+#             return redirect("skillswapapp:register")
 
-    return render(request, "skillswapapp/register.html")
+#         try:
+#             user = User.objects.create_user(username=username, email=email, password=password, first_name=fullname)
+#             user.save()
+#             messages.success(request, "Registration successful. Please log in.")
+#             return redirect("skillswapapp:login")
+#         except Exception as e:
+#             messages.error(request, f"An error occurred: {str(e)}")
+#             return redirect("skillswapapp:register")
+
+#     return render(request, "skillswapapp/register.html")
 
 
 @login_required(login_url="skillswapapp:login")
@@ -137,5 +153,24 @@ def addskills(request):
 # def review(request): # optional
 #     return render(request, 'skillswapapp/review.html')
 
-# def contact(request):  # optional
-#     return render(request, 'skillswapapp/contact.html')
+
+def contact_user_view(request, skill_id):
+    skill = get_object_or_404(Skill, id=skill_id)
+
+    if request.method == 'POST':
+        message = request.POST.get('message', '').strip()
+
+        if message:
+            return render(request, 'skillswapapp/contact.html', {
+                'skill': skill,
+                'success': True,
+                'message': message
+            })
+        else:
+            return render(request, 'skillswapapp/contact.html', {
+                'skill': skill,
+                'error': "Message cannot be empty."
+            })
+
+    return render(request, 'skillswapapp/contact.html', {'skill': skill})
+

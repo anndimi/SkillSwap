@@ -16,8 +16,13 @@
       <option value="art" {% if request.GET.category == "art" %}selected{% endif %}>Art</option>
       <option value="sports" {% if request.GET.category == "sports" %}selected{% endif %}>Sports</option>
     </select>
+    <select name="type" style="padding: 12px; font-size: 16px; border-radius: 4px; border: 1px solid #ccc;">
+      <option value="">All Types</option>
+      <option value="offer" {% if request.GET.type == "offer" %}selected{% endif %}>Offering Skill</option>
+      <option value="seek" {% if request.GET.type == "seek" %}selected{% endif %}>Seeking Skill</option>
+    </select>
 
-    <button type="submit">Search</button>
+    <button type="submit">Filter</button>
   </form>
 
 

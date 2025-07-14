@@ -17,6 +17,7 @@ urlpatterns = [
     path("skilldetails/<int:skill_id>/", views.skilldetails, name="skilldetails"),
     path("profile/", views.profile, name="profile"),
     path("profile/delete/<int:skill_id>/", views.deleteskill, name="deleteskill"),
+    path('profile/<str:username>/', views.view_profile, name='view_profile'),
     # path("review/", views.review, name="review"), #optional
     path("contact/<int:skill_id>/", views.contact_user_view, name="contact"),
 ]

@@ -5,6 +5,8 @@ from .models import Skill
 from .forms import SkillForm
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from .models import UserProfile
+from .forms import UserForm, UserProfileForm
 from skillswapapp import models  # for login session
 from django.db.models import Q
 from .forms import CustomSignupForm
@@ -92,7 +94,39 @@ def skilldetails(request, skill_id):
 @login_required(login_url="skillswapapp:login")
 def profile(request):
     user_skills = request.user.skills.all()
-    return render(request, "skillswapapp/profile.html", {"user_skills": user_skills})
+    user_profile, created = UserProfile.objects.get_or_create(user=request.user)
+
+    if request.method == 'POST':
+        user_form = UserForm(request.POST, instance=request.user)
+        profile_form = UserProfileForm(request.POST, request.FILES, instance=user_profile)
+
+        if user_form.is_valid() and profile_form.is_valid():
+            user_form.save()
+            profile_form.save()
+            messages.success(request, "Profile updated successfully.")
+            return redirect('skillswapapp:profile')
+    else:
+        user_form = UserForm(instance=request.user)
+        profile_form = UserProfileForm(instance=user_profile)
+
+    return render(request, "skillswapapp/profile.html", {
+        "user_skills": user_skills,
+        "user_form": user_form,
+        "profile_form": profile_form,
+        "user_profile": user_profile,
+    })
+
+@login_required(login_url="skillswapapp:login")
+def view_profile(request, username):
+    user = get_object_or_404(User, username=username)
+    user_profile = get_object_or_404(UserProfile, user=user)
+    user_skills = Skill.objects.filter(user=user)
+
+    return render(request, 'skillswapapp/view_profile.html', {
+        'viewed_user': user,
+        'user_profile': user_profile,
+        'user_skills': user_skills,
+    })
 
 
 @login_required(login_url="skillswapapp:login")

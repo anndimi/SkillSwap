@@ -231,3 +231,111 @@ th {
     background-color: #27ae60;
   }
 /* ----Register form End----- */
+/* PROFILE PAGE STYLES */
+.profile-form {
+  display: grid;
+  grid-template-columns: 150px 1fr;
+  gap: 15px 20px;
+  align-items: start;
+  margin-bottom: 30px;
+}
+
+.profile-form label {
+  font-weight: bold;
+  color: #34495e;
+  text-align: right;
+  padding-top: 10px;
+}
+
+.profile-form input[type="text"],
+.profile-form input[type="email"],
+.profile-form textarea,
+.profile-form input[type="file"] {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 15px;
+}
+
+.profile-form textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+.profile-picture-preview {
+  margin-top: 10px;
+}
+
+.profile-picture-preview img {
+  max-width: 120px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+}
+
+.update-btn {
+    background-color: #2980b9;
+    color: white;
+    padding: 12px 30px;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.update-btn:hover {
+    background-color: #2471a3;
+    transform: translateY(-1px);
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.topbar-profile-pic {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid white;
+}
+/* PROFILE PAGE STYLES END */
+
+/* SKILL DETAILS PAGE STYLES */
+.detail-container {
+    max-width: 700px;
+    margin: 50px auto;
+    padding: 30px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    font-size: 16px;
+  }
+
+  .detail-container h2 {
+    text-align: center;
+    margin-bottom: 25px;
+    color: #2c3e50;
+  }
+
+  .detail-container p {
+    margin: 10px 0;
+  }
+
+  .detail-back-link {
+    display: inline-block;
+    margin-top: 20px;
+    color: #2980b9;
+    text-decoration: none;
+    font-weight: bold;
+  }
+
+  .details-back-link:hover {
+    text-decoration: underline;
+  }
+  /* SKILL DETAILS PAGE STYLES END */

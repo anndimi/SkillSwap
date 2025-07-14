@@ -7,7 +7,13 @@
     <body>
         {% if user.is_authenticated %}
         <div class="top-bar">
-          <div>Welcome, {{ request.user.first_name }}</div>
+          <div class="user-info">
+            {% if request.user.userprofile.profile_picture %}
+                <img src="{{ request.user.userprofile.profile_picture.url }}" alt="Profile Picture" class="topbar-profile-pic">
+            {% endif %}
+            <span>Welcome, {{ request.user.first_name }}</span>
+          </div>
+
             <div class="btn-container">
               <a href="{% url 'skillswapapp:skills' %}" class="profile-btn">Skills</a>
               <a href="{% url 'skillswapapp:profile' %}" class="profile-btn">Profile</a>

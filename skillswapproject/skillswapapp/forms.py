@@ -7,9 +7,6 @@ from django.contrib.auth.models import User
 class SkillForm(forms.ModelForm):
     class Meta:
         model = Skill
-<<<<<<< HEAD
-        fields = ["type", "title", "description", "category", "availability", "location"]
-=======
         fields = ['title', 'description', 'category', 'availability', 'location']
        
 
@@ -31,4 +28,3 @@ class CustomSignupForm(UserCreationForm):
         if commit:
             user.save()
         return user
->>>>>>> skillswap-contact

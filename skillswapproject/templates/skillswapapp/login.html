@@ -1,8 +1,98 @@
 {% extends 'skillswapapp/base.html' %}
+{% load static %}
 {% block body_block %}
- 
-<div class="jumbotron">
-  <h1>Login</h1>
+
+<style>
+  .login-container {
+    max-width: 400px;
+    margin: 80px auto;
+    padding: 30px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+  }
+
+  .login-container h2 {
+    text-align: center;
+    margin-bottom: 25px;
+    color: #2c3e50;
+  }
+
+  .login-container label {
+    font-weight: bold;
+    display: block;
+    margin-top: 15px;
+  }
+
+  .login-container input[type="text"],
+  .login-container input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+
+  .login-container .remember {
+    margin-top: 15px;
+    display: flex;
+    align-items: center;
+  }
+
+  .login-container .remember input {
+    margin-right: 10px;
+  }
+
+  .login-container button {
+    width: 100%;
+    padding: 12px;
+    margin-top: 20px;
+    background-color: #3498db;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+
+  .login-container button:hover {
+    background-color: #2980b9;
+  }
+</style>
+
+<div class="login-container">
+  <h2>Login to SkillSwap</h2>
+  {% if messages %}
+    <ul style="list-style: none; padding: 0;">
+      {% for message in messages %}
+        <li style="color: red; text-align: center; margin-bottom: 10px;">
+          {{ message }}
+        </li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+
+  <form method="POST">
+    {% csrf_token %}
+    <label for="username">Username</label>
+    <input type="text" name="username" id="username" required>
+
+    <label for="password">Password</label>
+    <input type="password" name="password" id="password" required>
+
+    <div class="remember">
+      <input type="checkbox" name="remember" id="remember">
+      <label for="remember">Remember Me</label>
+    </div>
+
+    <button type="submit">Login</button>
+  </form>
+  
+  <div style="text-align: center; margin-top: 15px;">
+    <p>Don't have an account? <a href="{% url 'skillswapapp:register' %}">Register here</a></p>
+  </div>
+
 </div>
- 
+
 {% endblock %}

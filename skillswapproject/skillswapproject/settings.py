@@ -29,7 +29,7 @@ SECRET_KEY = 'django-insecure-n9*%2yd(jy!_*8$&@uq5*(g*rku#gy&i^n)=!8l47!__%#m-$t
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1','.onrender.com']
+ALLOWED_HOSTS = ['127.0.0.1','.ngrok-free.app']
 
 
 # Application definition
@@ -132,3 +132,7 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+CSRF_TRUSTED_ORIGINS = [
+    "https://0d3c97441e7a.ngrok-free.app",
+]

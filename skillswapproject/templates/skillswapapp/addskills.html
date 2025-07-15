@@ -1,11 +1,69 @@
 {% extends 'skillswapapp/base.html' %}
 {% block body_block %}
+<style>
+.skill-form {
+  max-width: 600px;
+  margin: 2rem auto;
+  padding: 1.5rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background: #f9f9f9;
+}
 
-<h2>Add a New Skill</h2>
-<form method="post">
+.skill-form p {
+  margin-bottom: 1rem;
+}
+
+.skill-form input[type="text"],
+.skill-form select,
+.skill-form textarea {
+  width: 100%;
+  padding: 12px 20px; /* generous padding inside inputs */
+  margin-top: 0.25rem;
+  border: 1px solid #aaa;
+  border-radius: 4px;
+  box-sizing: border-box; /* ensures padding fits */
+}
+
+.skill-form textarea {
+  min-height: 5rem;
+  resize: vertical;
+}
+.skill-form .button-wrapper {
+  text-align: center;
+}
+
+.skill-form button {
+  display: inline-block;
+  background-color: #007bff;
+  color: white;
+  padding: 12px 24px; /* more padding for a chunkier button */
+  border: 0;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-top: 1rem;
+}
+
+.skill-form button:hover {
+  background-color: #0056b3;
+}
+.skill-form .input-group {
+  position: relative;
+  width: 300px;    /* small box width */
+  margin-bottom: 1rem;
+}
+
+</style>
+
+
+<h2 style="text-align: center;">Add a New Skill</h2>
+<form method="post" class="skill-form">
   {% csrf_token %}
   {{ form.as_p }}
-  <button type="submit">Add Skill</button>
+  <div class="button-wrapper">
+    <button>Submit</button>
+  </div>
 </form>
 
 

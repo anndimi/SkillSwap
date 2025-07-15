@@ -29,27 +29,41 @@
   <table>
     <thead>
       <tr>
+        <th>Type</th>
         <th>Title</th>
         <th>Category</th>
         <th>Description</th>
         <th>Availability</th>
         <th>Location</th>
+        <th>Rating</th>
         <th>Action</th>
       </tr>
     </thead>
     <tbody>
       {% for skill in skills %}
         <tr>
+          {%if skill.type == "offer"%}
+          <td><span class="offering-style">OFFERING</span></td>
+          {%else%}
+          <td><span class="seeking-style">SEEKING</span></td>
+          {%endif%}
           <td>{{ skill.title }}</td>
           <td>{{ skill.get_category_display }}</td>
           <td>{{ skill.description }}</td>
           <td>{{ skill.availability }}</td>
           <td>{{ skill.location }}</td>
+          <td>
+            {% if skill.avg_rating %}
+            {{ skill.avg_rating|floatformat:1 }} ★
+            {% else %}
+            –
+            {% endif %}
+          </td>
           <td><a href="{% url 'skillswapapp:skilldetails' skill.id %}" class="view-link">View Details</a></td>
         </tr>
       {% empty %}
         <tr>
-          <td colspan="6">No skills found.</td>
+          <td colspan="7">No skills found.</td>
         </tr>
       {% endfor %}
     </tbody>

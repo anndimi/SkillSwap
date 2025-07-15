@@ -43,6 +43,17 @@
   <p><strong>Description:</strong> {{ skill.description }}</p>
   <p><strong>Availability:</strong> {{ skill.availability }}</p>
   <p><strong>Location:</strong> {{ skill.location }}</p>
+  <p><strong>Offered by:</strong>
+    <a href="{% url 'skillswapapp:view_profile' skill.user.username %}">
+      {{ skill.user.first_name }} ({{ skill.user.username }})
+    </a>
+  </p>
+
+  {% if average %}
+  <p><strong>Average Rating:</strong> {{ average|floatformat:1 }} ★</p>
+  {% else %}
+  <p>No ratings yet.</p>
+  {% endif %}
   <p><strong>Offered by:</strong> {{ skill.user.first_name }} ({{ skill.user.username }})</p>
 
   <a href="{% url 'skillswapapp:skills' %}" class="back-link">← Back to Skills</a>
@@ -51,5 +62,48 @@
     Contact {{ skill.user.first_name }}
   </a>
 </div>
+
+<div class="detail-container">
+  <h2>Review Skill</h2>
+  <form method="post" class="review-form">
+    {% csrf_token %}
+
+  <fieldset class="star-rating">
+    {% for value, label in form.fields.rating.choices %}
+    <input
+      type="radio"
+      id="star{{ value }}"
+      name="{{ form.rating.name }}"
+      value="{{ value }}"
+      {% if form.rating.value == value|stringformat:"s" %}checked{% endif %}
+    />
+    <label for="star{{ value }}" title="{{ label }}">★</label>
+    {% endfor %}
+  </fieldset>
+
+
+    <!-- comment field and submit button -->
+    <div>
+      {{ form.comment }}
+    </div>
+    <button type="submit" class="submit-review">Submit Review</button>
+  </form>
+</div>
+
+<div class="detail-container">
+  <h3>Reviews</h3>
+  {% for rev in reviews %}
+  <div>
+    <strong>{{ rev.user.username }}</strong>
+    — {{ rev.rating }}★
+    <em>on {{ rev.created_at|date:"M j, Y H:i" }}</em>
+    <p>{{ rev.comment }}</p>
+  </div>
+  {% empty %}
+  <p>No reviews yet. Be the first!</p>
+  {% endfor %}
+</div>
+
+
 
 {% endblock %}

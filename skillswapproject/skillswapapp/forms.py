@@ -1,8 +1,7 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
-from .models import Skill, UserProfile
-from .models import UserProfile
+from .models import Skill, UserProfile, Review
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 
@@ -36,3 +35,17 @@ class CustomSignupForm(UserCreationForm):
         if commit:
             user.save()
         return user
+    
+class ReviewForm(forms.ModelForm):
+    rating = forms.ChoiceField(
+        choices=[(i, str(i)) for i in range(5, 0, -1)],  # 5,4,3,2,1
+        widget=forms.RadioSelect,
+        required=True,
+    )
+    class Meta:
+        model = Review
+        fields = ['rating', 'comment']
+        widgets = {
+            'rating': forms.RadioSelect,
+            'comment': forms.Textarea(attrs={'rows':3, 'placeholder':'Leave a review'}),
+        }

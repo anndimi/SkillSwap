@@ -1,109 +1,111 @@
 /* NAVBAR START */
 .top-bar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #2c3e50;
-    color: white;
-    padding: 10px 20px;
-    font-size: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #2c3e50;
+  color: white;
+  padding: 10px 20px;
+  font-size: 16px;
 }
 
 .btn-container {
-    display: flex;
-    gap: 10px;
+  display: flex;
+  gap: 10px;
 }
 
 .profile-btn {
-    background-color: #34632f;
-    color: white;
-    padding: 8px 16px;
-    border: none;
-    border-radius: 4px;
-    text-decoration: none;
-    font-weight: bold;
+  background-color: #34632f;
+  color: white;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  text-decoration: none;
+  font-weight: bold;
 }
 
 .logout-btn {
-    background-color: #e74c3c;
-    color: white;
-    padding: 8px 16px;
-    border: none;
-    border-radius: 4px;
-    text-decoration: none;
-    font-weight: bold;
+  background-color: #e74c3c;
+  color: white;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  text-decoration: none;
+  font-weight: bold;
 }
 
 .logout-btn:hover {
     background-color: #c0392b;
+    cursor: pointer;
 }
 
 .content {
-    padding: 40px;
+  padding: 40px;
 }
 
 .search-form {
-    margin-bottom: 30px;
-    text-align: center;
+  margin-bottom: 30px;
+  text-align: center;
 }
 
 .search-form input {
-    padding: 12px;
-    width: 300px;
-    border-radius: 4px;
-    border: 1px solid #ccc;
-    font-size: 16px;
+  padding: 12px;
+  width: 300px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  font-size: 16px;
 }
 
 .search-form button {
-    padding: 12px 40px;
-    background-color: #2980b9;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    font-size: 16px;
-    font-weight: bold;
-    margin-left: 10px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
+  padding: 12px 40px;
+  background-color: #2980b9;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  font-weight: bold;
+  margin-left: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
 .search-form button:hover {
-    background-color: #2471a3;
+  background-color: #2471a3;
 }
 
 table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
 }
 
 th, td {
-    padding: 12px;
-    border: 1px solid #ddd;
-    text-align: left;
+  padding: 12px;
+  border: 1px solid #ddd;
+  text-align: left;
 }
 
 th {
-    background-color: #f2f2f2;
+  background-color: #f2f2f2;
 }
 
 .view-link {
-    color: #2980b9;
-    text-decoration: none;
-    font-weight: bold;
+  color: #2980b9;
+  text-decoration: none;
+  font-weight: bold;
 }
 
 .view-link:hover {
-    text-decoration: underline;
+  text-decoration: underline;
 }
+
 /* NAVBAR END */
 
 
 /* ------contact button in skilldetails----- */
-  .contact-button {
+.contact-button {
   display: inline-block;
-  background-color: #2980b9; 
+  background-color: #2980b9;
   color: white;
   padding: 10px 20px;
   border-radius: 6px;
@@ -131,7 +133,7 @@ th {
   background: #fff;
   padding: 20px 30px;
   border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 .contact-page .contact-container h2 {
@@ -182,56 +184,61 @@ th {
 .contact-page .back-link:hover {
   text-decoration: underline;
 }
+
 /* ---------Register form-------- */
-  .register-container {
-    max-width: 500px;
-    margin: 80px auto;
-    padding: 30px;
-    background-color: #ffffff;
-    border-radius: 10px;
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
-  }
+.register-container {
+  max-width: 500px;
+  margin: 80px auto;
+  padding: 30px;
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+}
 
-  .register-container h2 {
-    text-align: center;
-    margin-bottom: 25px;
-    color: #2c3e50;
-  }
+.register-container h2 {
+  text-align: center;
+  margin-bottom: 25px;
+  color: #2c3e50;
+}
 
-  .register-container label {
-    font-weight: bold;
-    display: block;
-    margin-top: 15px;
-  }
+.register-container label {
+  font-weight: bold;
+  display: block;
+  margin-top: 15px;
+}
 
-  .register-container input[type="text"],
-  .register-container input[type="email"],
-  .register-container input[type="password"] {
-    width: 100%;
-    padding: 10px;
-    margin-top: 5px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-  }
+.register-container input[type="text"],
+.register-container input[type="email"],
+.register-container input[type="password"] {
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
 
-  .register-container button {
-    width: 100%;
-    padding: 12px;
-    margin-top: 25px;
-    background-color: #2ecc71;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    font-size: 16px;
-    font-weight: bold;
-    cursor: pointer;
-  }
+.register-container button {
+  width: 100%;
+  padding: 12px;
+  margin-top: 25px;
+  background-color: #2ecc71;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+}
 
-  .register-container button:hover {
-    background-color: #27ae60;
-  }
+.register-container button:hover {
+  background-color: #27ae60;
+}
+
 /* ----Register form End----- */
 /* PROFILE PAGE STYLES */
+.profile-container{
+  padding: 0 30px;
+}
 .profile-form {
   display: grid;
   grid-template-columns: 150px 1fr;
@@ -274,21 +281,21 @@ th {
 }
 
 .update-btn {
-    background-color: #2980b9;
-    color: white;
-    padding: 12px 30px;
-    border: none;
-    border-radius: 6px;
-    font-size: 16px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.2s ease;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  background-color: #2980b9;
+  color: white;
+  padding: 12px 30px;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .update-btn:hover {
-    background-color: #2471a3;
-    transform: translateY(-1px);
+  background-color: #2471a3;
+  transform: translateY(-1px);
 }
 
 .user-info {
@@ -304,43 +311,128 @@ th {
   object-fit: cover;
   border: 2px solid white;
 }
+
+.profile-skill-list{
+  display: flex;
+  gap: 10px;
+  list-style: none;
+  margin-top: 20px;
+}
+.profile-list-header{
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.profile-skill-card{
+  display: flex;
+  flex-direction: column;
+  border: 1px solid black;
+  border-radius: 10px;
+  padding: 20px 10px;
+  max-width: 300px;
+}
 /* PROFILE PAGE STYLES END */
 
 /* SKILL DETAILS PAGE STYLES */
 .detail-container {
-    max-width: 700px;
-    margin: 50px auto;
-    padding: 30px;
-    background-color: #ffffff;
-    border-radius: 10px;
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
-    font-size: 16px;
-  }
+  max-width: 700px;
+  margin: 50px auto;
+  padding: 30px;
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+  font-size: 16px;
+}
 
-  .detail-container h2 {
-    text-align: center;
-    margin-bottom: 25px;
-    color: #2c3e50;
-  }
+.detail-container h2 {
+  text-align: center;
+  margin-bottom: 25px;
+  color: #2c3e50;
+}
 
-  .detail-container p {
-    margin: 10px 0;
-  }
+.detail-container p {
+  margin: 10px 0;
+}
 
-  .detail-back-link {
-    display: inline-block;
-    margin-top: 20px;
-    color: #2980b9;
-    text-decoration: none;
-    font-weight: bold;
-  }
+.detail-back-link {
+  display: inline-block;
+  margin-top: 20px;
+  color: #2980b9;
+  text-decoration: none;
+  font-weight: bold;
+}
 
+.details-back-link:hover {
+  text-decoration: underline;
+}
+
+.submit-review {
+  display: inline-block;
+  background-color: #2980b9;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 6px;
+  border: 0;
+  text-decoration: none;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+  cursor: pointer;
+  margin-top: 15px;
+}
+
+.review-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.star-rating {
+  direction: rtl;
+  border: 0;
+  font-size: 2rem;
+  display: inline-block;
+  padding-top: 0;
+}
+
+.star-rating input {
+  display: none;
+  /* hide the raw radio buttons */
+}
+
+.star-rating label {
+  color: #ddd;
+  /* un‑filled star color */
+  cursor: pointer;
+  user-select: none;
+}
+
+/* Highlight current & previous stars on hover */
+.star-rating label:hover,
+.star-rating label:hover~label {
+  color: gold;
+}
+
+/* Persist highlight on checked */
+.star-rating input:checked~label {
+  color: gold;
+}
+
+/* SKILL DETAILS PAGE STYLES END */
   .details-back-link:hover {
     text-decoration: underline;
   }
   /* SKILL DETAILS PAGE STYLES END */
-
-
-
-
-
+  /* SKILL PAGE */
+.offering-style{
+  padding: 10px 10px;
+  background-color: rgba(34, 34, 248, 0.719);
+  color: white;
+  border-radius: 5%;
+}
+.seeking-style{
+  padding: 10px 10px;
+  background-color: rgba(235, 147, 47, 0.781);
+  color: white;
+  border-radius: 5%;
+}
+  /* SKILL PAGE END */

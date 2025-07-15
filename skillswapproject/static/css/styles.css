@@ -339,3 +339,17 @@ th {
     text-decoration: underline;
   }
   /* SKILL DETAILS PAGE STYLES END */
+  /* SKILL PAGE */
+.offering-style{
+  padding: 10px 10px;
+  background-color: rgba(34, 34, 248, 0.719);
+  color: white;
+  border-radius: 5%;
+}
+.seeking-style{
+  padding: 10px 10px;
+  background-color: rgba(235, 147, 47, 0.781);
+  color: white;
+  border-radius: 5%;
+}
+  /* SKILL PAGE END */

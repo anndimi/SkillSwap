@@ -1,15 +1,16 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
-from .models import Skill
+from .models import Skill, Review
 from .forms import SkillForm
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from .models import UserProfile
-from .forms import UserForm, UserProfileForm
+from .forms import UserForm, UserProfileForm, ReviewForm
 from skillswapapp import models  # for login session
-from django.db.models import Q
+from django.db.models import Q, Avg
 from .forms import CustomSignupForm
+from django.urls import reverse
 
 def index(request):
     return render(request, "skillswapapp/index.html")
@@ -77,6 +78,10 @@ def skills(request):
             Q(category__icontains=query)
         )
 
+    # Calculate average rating for each skill
+    for skill in skills:
+        skill.avg_rating = skill.average_rating()
+
     return render(request, "skillswapapp/skills.html", {"skills": skills})
 
 
@@ -88,7 +93,34 @@ def addskills(request):
 @login_required(login_url="skillswapapp:login")
 def skilldetails(request, skill_id):
     skill = get_object_or_404(Skill, id=skill_id)
-    return render(request, "skillswapapp/skilldetails.html", {"skill": skill})
+     # see if this user already reviewed
+    existing = Review.objects.filter(skill=skill, user=request.user).first()
+    if request.method == 'POST':
+        form = ReviewForm(request.POST, instance=existing)
+        if form.is_valid():
+            review = form.save(commit=False)
+            review.user = request.user
+            review.skill = skill
+            review.save()
+            url = reverse('skillswapapp:skilldetails', kwargs={'skill_id': skill_id})
+            return redirect(f"{url}?submitted=1")
+    else:
+        if 'submitted' in request.GET:
+            # After submission: always show a brand‑new, empty form
+            form = ReviewForm()
+        else:
+            # First time or edit scenario: pre‑fill if they’ve already reviewed
+            form = ReviewForm(instance=existing)
+
+    reviews = skill.reviews.select_related('user').order_by('-created_at')
+    avg = skill.average_rating()
+
+    return render(request, 'skillswapapp/skilldetails.html', {
+        'skill': skill,
+        'reviews': reviews,
+        'form': form,
+        'average': avg,
+    })
 
 
 @login_required(login_url="skillswapapp:login")

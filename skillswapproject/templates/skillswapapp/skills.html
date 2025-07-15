@@ -29,6 +29,7 @@
   <table>
     <thead>
       <tr>
+        <th>Type</th>
         <th>Title</th>
         <th>Category</th>
         <th>Description</th>
@@ -41,6 +42,11 @@
     <tbody>
       {% for skill in skills %}
         <tr>
+          {%if skill.type == "offer"%}
+          <td><span class="offering-style">OFFERING</span></td>
+          {%else%}
+          <td><span class="seeking-style">SEEKING</span></td>
+          {%endif%}
           <td>{{ skill.title }}</td>
           <td>{{ skill.get_category_display }}</td>
           <td>{{ skill.description }}</td>
@@ -57,7 +63,7 @@
         </tr>
       {% empty %}
         <tr>
-          <td colspan="6">No skills found.</td>
+          <td colspan="7">No skills found.</td>
         </tr>
       {% endfor %}
     </tbody>

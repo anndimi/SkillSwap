@@ -9,8 +9,10 @@ from .models import UserProfile
 from .forms import UserForm, UserProfileForm, ReviewForm
 from skillswapapp import models  # for login session
 from django.db.models import Q, Avg
+from .forms import UserForm, UserProfileForm
 from .forms import CustomSignupForm
 from django.urls import reverse
+
 
 def index(request):
     return render(request, "skillswapapp/index.html")
@@ -51,32 +53,35 @@ def user_logout(request):
     logout(request)
     return redirect("skillswapapp:login")
 
+
 def register(request):
-    if request.method == 'POST':
+    if request.method == "POST":
         form = CustomSignupForm(request.POST)
         if form.is_valid():
             user = form.save()
-            login(request, user)  
-            return redirect('skillswapapp:index')  
+            login(request, user)
+            return redirect("skillswapapp:index")
     else:
         form = CustomSignupForm()
-    return render(request, 'skillswapapp/register.html', {'form': form})
-
-
+    return render(request, "skillswapapp/register.html", {"form": form})
 
 
 @login_required(login_url="skillswapapp:login")
 def skills(request):
     query = request.GET.get("q", "")
+    category = request.GET.get("category", "")
+    type_ = request.GET.get("type", "")
     current_username = request.session.get("username")
 
     skills = Skill.objects.exclude(user__username=current_username)
 
+    if category:
+        skills = skills.filter(category__iexact=category)
+    if type_:
+        skills = skills.filter(type__iexact=type_)
+
     if query:
-        skills = skills.filter(
-            Q(title__icontains=query) |
-            Q(category__icontains=query)
-        )
+        skills = skills.filter(Q(title__icontains=query) | Q(category__icontains=query))
 
     # Calculate average rating for each skill
     for skill in skills:
@@ -128,7 +133,7 @@ def profile(request):
     user_skills = request.user.skills.all()
     user_profile, created = UserProfile.objects.get_or_create(user=request.user)
 
-    if request.method == 'POST':
+    if request.method == "POST":
         user_form = UserForm(request.POST, instance=request.user)
         profile_form = UserProfileForm(request.POST, request.FILES, instance=user_profile)
 
@@ -136,17 +141,22 @@ def profile(request):
             user_form.save()
             profile_form.save()
             messages.success(request, "Profile updated successfully.")
-            return redirect('skillswapapp:profile')
+            return redirect("skillswapapp:profile")
     else:
         user_form = UserForm(instance=request.user)
         profile_form = UserProfileForm(instance=user_profile)
 
-    return render(request, "skillswapapp/profile.html", {
-        "user_skills": user_skills,
-        "user_form": user_form,
-        "profile_form": profile_form,
-        "user_profile": user_profile,
-    })
+    return render(
+        request,
+        "skillswapapp/profile.html",
+        {
+            "user_skills": user_skills,
+            "user_form": user_form,
+            "profile_form": profile_form,
+            "user_profile": user_profile,
+        },
+    )
+
 
 @login_required(login_url="skillswapapp:login")
 def view_profile(request, username):
@@ -154,11 +164,15 @@ def view_profile(request, username):
     user_profile = get_object_or_404(UserProfile, user=user)
     user_skills = Skill.objects.filter(user=user)
 
-    return render(request, 'skillswapapp/view_profile.html', {
-        'viewed_user': user,
-        'user_profile': user_profile,
-        'user_skills': user_skills,
-    })
+    return render(
+        request,
+        "skillswapapp/view_profile.html",
+        {
+            "viewed_user": user,
+            "user_profile": user_profile,
+            "user_skills": user_skills,
+        },
+    )
 
 
 @login_required(login_url="skillswapapp:login")
@@ -189,20 +203,12 @@ def addskills(request):
 def contact_user_view(request, skill_id):
     skill = get_object_or_404(Skill, id=skill_id)
 
-    if request.method == 'POST':
-        message = request.POST.get('message', '').strip()
+    if request.method == "POST":
+        message = request.POST.get("message", "").strip()
 
         if message:
-            return render(request, 'skillswapapp/contact.html', {
-                'skill': skill,
-                'success': True,
-                'message': message
-            })
+            return render(request, "skillswapapp/contact.html", {"skill": skill, "success": True, "message": message})
         else:
-            return render(request, 'skillswapapp/contact.html', {
-                'skill': skill,
-                'error': "Message cannot be empty."
-            })
+            return render(request, "skillswapapp/contact.html", {"skill": skill, "error": "Message cannot be empty."})
 
-    return render(request, 'skillswapapp/contact.html', {'skill': skill})
-
+    return render(request, "skillswapapp/contact.html", {"skill": skill})

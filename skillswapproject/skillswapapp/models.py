@@ -26,6 +26,12 @@ class Skill(models.Model):
 
     def __str__(self):
         return f"{self.title} ({self.category}) by {self.user.username}"
+    
+    def average_rating(self):
+        reviews = self.reviews.all()
+        if not reviews:
+            return None
+        return sum(r.rating for r in reviews) / reviews.count()
 
 
 class UserProfile(models.Model):
@@ -35,3 +41,18 @@ class UserProfile(models.Model):
 
     def __str__(self):
         return self.user.username
+
+class Review(models.Model):
+    RATING_CHOICES = [(i, f"{i} Star{'s' if i>1 else ''}") for i in range(1, 6)]
+
+    skill = models.ForeignKey(Skill, on_delete=models.CASCADE, related_name='reviews')
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    rating = models.IntegerField(choices=RATING_CHOICES)
+    comment = models.TextField(blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        unique_together = ('skill', 'user')  # one review per user per skill
+
+    def __str__(self):
+        return f"{self.user.username} → {self.skill.title}: {self.rating}★"

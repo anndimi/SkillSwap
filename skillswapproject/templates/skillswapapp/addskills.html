@@ -1,12 +1,26 @@
 {% extends 'skillswapapp/base.html' %}
-{% block body_block %}
+{% load static %}
+<!DOCTYPE html>
+<html>
 
-<h2>Add a New Skill</h2>
-<form method="post">
-  {% csrf_token %}
-  {{ form.as_p }}
-  <button type="submit">Add Skill</button>
-</form>
+<head>
+  <title>SkillSwap</title>
+  <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
 
+<body>
+  {% block body_block %}
+  <form method="post" class="skill-form">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <div class="button-wrapper">
+      <button>Submit</button>
+    </div>
+  </form>
+
+</body>
+
+</html>
 
 {% endblock %}
+

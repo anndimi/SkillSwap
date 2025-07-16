@@ -29,27 +29,38 @@ Project Management: Trello
 
 # 🛠️ Installation & Run Locally
 
-# Clone the repo
+**Tech stack versions**
+- python 3.12 or 3.13
+- asgiref    3.9.1
+- Django     5.2.4
+- pillow     11.3.0
+- pip        25.1
+- setuptools 78.1.1
+- sqlparse   0.5.3
+- tzdata     2025.2
+- wheel      0.45.1
+
+**Clone the repo**
 git clone https://github.com/anndimi/SkillSwap
 
-# Navigate into the project directory
+**Navigate into the project directory**
 cd skillswap
 
-# Apply migrations
+**Apply migrations**
 python manage.py makemigrations
 python manage.py migrate
 
-# Create superuser (for admin access)
+**Create superuser (for admin access)**
 python manage.py createsuperuser
 
-# Run the development server
+**Run the development server**
 python manage.py runserver
 
 # Visit:
-# - http://127.0.0.1:8000/skillswapapp/register/  → Sign up
-# - http://127.0.0.1:8000/skillswapapp/login/     → Login
-# - http://127.0.0.1:8000/skillswapapp/           → Browse skills
-# - http://127.0.0.1:8000/admin/                 → Admin panel
+ - http://127.0.0.1:8000/skillswapapp/register/  → Sign up
+ - http://127.0.0.1:8000/skillswapapp/login/     → Login
+ - http://127.0.0.1:8000/skillswapapp/           → Browse skills
+ - http://127.0.0.1:8000/admin/                 → Admin panel
 
 
 # 🖼️ Screenshots
